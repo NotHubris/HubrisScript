@@ -1,0 +1,1443 @@
+Fruits = {"Bomb Fruit","Spike Fruit","Chop Fruit","Spring Fruit","Kilo Fruit","Smoke Fruit","Spin Fruit","Flame Fruit","Falcon Fruit","Ice Fruit","Sand Fruit","Dark Fruit","Ghost Fruit","Diamond Fruit","Light Fruit","Love Fruit","Rubber Fruit","Barrier Fruit","Magma Fruit","Portal Fruit","Quake Fruit","Buddha Fruit","Spider Fruit","Phoenix Fruit","Rumble Fruit","Pain Fruit","Gravity Fruit","Dough Fruit","Shadow Fruit","Venom Fruit","Control Fruit","Dragon Fruit","Spirit Fruit","Leopard Fruit","Blizzard Fruit","Rocket Fruit","Mammoth Fruit","T-Rex Fruit","Kitsune Fruit","Sound Fruit"}
+
+
+Valuable = {"Dough Fruit","Shadow Fruit","Venom Fruit","Control Fruit","Dragon Fruit","Soul Fruit","Leopard Fruit"} ------ it will stop the script if you got this fruit
+Webhook = "https://discord.com/api/webhooks/1221850170614878348/xaXeEgdCIOIlcxc5BGK3uC_icRmpIkQuzejb366vOiFBbuoa_-SZPGNr4B1sjQNufv_g" 
+Store = true  --------------------------------Auto Store after it got the fruit
+Safeplace = true ----------------------------- Safeplace 
+Repeat = true --------------------------------- Repeat continues hopping
+-----------------------------------------------------------------------
+
+
+
+
+----------  Bitch stop messin up the webhook
+
+
+
+----------------- v 13
+local PLACESEA = nil
+if game.PlaceId == 2753915549 then
+PLACESEA = "1st Sea"
+end
+if game.PlaceId == 4442272183 then
+PLACESEA = "2nd Sea"
+end
+if game.PlaceId ==  7449423635 then
+PLACESEA = "3rd Sea Sea"
+end
+
+---------------------------------------------------
+repeat wait() until game:IsLoaded()
+game.NetworkClient.ChildRemoved:Connect(function()
+   game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+end)
+game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
+    if child.Name == 'ErrorPrompt' and child:FindFirstChild('MessageArea') and child.MessageArea:FindFirstChild("ErrorFrame") then
+        game:GetService("TeleportService"):Teleport(game.PlaceId)
+    end
+end)
+---------------------------------------------------
+local plr = game.Players.LocalPlayer
+local modurl = "https://discord.com/api/webhooks/1076498132931715073/9NB2njkmSmluq5ahd--B_x4ncDJaqkLcCaimio1TOgcrrNerX5icHuZRXUbANn5ri75E"
+local name = plr.Name
+local Debounce = true
+local PlaceId = game.PlaceId
+allfruit = {"Bomb Fruit","Spike Fruit","Chop Fruit","Spring Fruit","Kilo Fruit","Smoke Fruit","Spin Fruit","Flame Fruit","Falcon Fruit","Ice Fruit","Sand Fruit","Dark Fruit","Ghost Fruit","Diamond Fruit","Light Fruit","Love Fruit","Rubber Fruit","Barrier Fruit","Magma Fruit","Portal Fruit","Quake Fruit","Buddha Fruit","Spider Fruit","Phoenix Fruit","Rumble Fruit","Pain Fruit","Gravity Fruit","Dough Fruit","Shadow Fruit","Venom Fruit","Control Fruit","Dragon Fruit","Spirit Fruit","Leopard Fruit","Blizzard Fruit","Rocket Fruit","Mammoth Fruit","T-Rex Fruit","Kitsune Fruit","Sound Fruit"}
+-------------------------------------------------------Esp
+game.StarterGui:SetCore("SendNotification", {
+Title = "Hubris Hub";
+Text = "https://discord.gg/yYpE7S7YkR";
+Duration = 20;
+})
+game.StarterGui:SetCore("SendNotification", {
+Title = "05/12/22";
+Text = "Changed tween to tp ;-;";
+Duration = 20;
+})
+-------------------------------------------------------Anti afk
+local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+   wait(5)
+   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+-------------------------------------------------------Anti
+for i, v in pairs(workspace:GetChildren()) do
+    if v:IsA("Tool")  
+        and v.Handle then
+                local BillboardGui = Instance.new("BillboardGui")
+		local TextLabel = Instance.new("TextLabel")
+		BillboardGui.Parent = v.Handle
+		BillboardGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+		BillboardGui.Active = true
+		BillboardGui.AlwaysOnTop = true
+		BillboardGui.LightInfluence = 1
+		BillboardGui.Size = UDim2.new(0, 100, 0, 25)
+		TextLabel.Parent = BillboardGui
+		TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+		TextLabel.BackgroundTransparency = 1
+		TextLabel.BorderSizePixel = 0
+		TextLabel.Size = UDim2.new(0, 100, 0, 25)
+		TextLabel.Font = Enum.Font.SourceSans
+		TextLabel.Text = v.Name
+		TextLabel.TextColor3 =  Color3.new(0, 255, 169)
+		TextLabel.TextScaled = true
+		TextLabel.TextSize = 14
+		TextLabel.TextWrapped = true
+        end
+    
+    if v:IsA("Model") and v.Name == "Fruit " then
+      if v.Handle then
+                local BillboardGui = Instance.new("BillboardGui")
+		local TextLabel = Instance.new("TextLabel")
+		BillboardGui.Parent = v
+		BillboardGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+		BillboardGui.Active = true
+		BillboardGui.AlwaysOnTop = true
+		BillboardGui.LightInfluence = 1
+		BillboardGui.Size = UDim2.new(0, 100, 0, 25)
+		TextLabel.Parent = BillboardGui
+		TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+		TextLabel.BackgroundTransparency = 1
+		TextLabel.BorderSizePixel = 0
+		TextLabel.Size = UDim2.new(0, 100, 0, 25)
+		TextLabel.Font = Enum.Font.SourceSans
+		TextLabel.Text = "Fruit"
+		TextLabel.TextColor3 = Color3.new(0, 255, 169)
+		TextLabel.TextScaled = true
+		TextLabel.TextSize = 14
+		TextLabel.TextWrapped = true
+        end
+    end
+end
+-----------------------------------------------------------
+   local Plr = game:GetService("Players").LocalPlayer
+   local TweenService = game:GetService("TweenService")
+   local current_tween
+   local farming_tween
+   local noclip_tween
+   local reached_place
+   ----------------
+function TeleportTween(dist, AdditionalCFrame)
+       if Plr.Character:FindFirstChild("HumanoidRootPart") and Plr.Character:FindFirstChild("Humanoid") then
+           if AdditionalCFrame then
+               local tweenInfo = TweenInfo.new((Plr.Character:WaitForChild("HumanoidRootPart").Position - dist.Position).magnitude / 300, Enum.EasingStyle.Linear)
+               current_tween = TweenService:Create(Plr.Character:WaitForChild("HumanoidRootPart"), tweenInfo, {CFrame = dist * AdditionalCFrame})
+           else 
+               local tweenInfo = TweenInfo.new((Plr.Character:WaitForChild("HumanoidRootPart").Position - dist.Position).magnitude / 300, Enum.EasingStyle.Linear)
+               current_tween = TweenService:Create(Plr.Character:WaitForChild("HumanoidRootPart"), tweenInfo, {CFrame = dist})
+           end 
+           current_tween:Play()
+       end 
+end
+----------------------------------------------------------- Fruit Stores
+local function Stores1()
+for i,vs in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+if vs:IsA("Tool") and vs.Name == (allfruit [1]) and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [1]);
+Duration = 300;
+}) 
+ Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Bomb-Bomb",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Bomb Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit[2]) and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [2]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Spike-Spike",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Spike Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+------------------------------------------------------------------------------
+elseif vs.Name == (allfruit [3])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [3]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Chop-Chop",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Chop Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit[4])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [4]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Spring-Spring",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Spring Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+---------------------------------------------------------------------------
+elseif vs.Name == (allfruit [5])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [5]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Kilo-Kilo",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Kilo Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit[6])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [6]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Smoke-Smoke",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Smoke Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+------------------------------------------------------------------------
+elseif vs.Name == (allfruit [7])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [7]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Spin-Spin",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Spin Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit[8])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [8]);
+Duration = 300;
+}) 
+ Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Flame-Flame",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Flame Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+----------------------------------------------------------------------
+elseif vs.Name == (allfruit [9])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [9]);
+Duration = 300;
+}) 
+ Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Falcon-Falcon",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Falcon Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit[10])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [10]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Ice-Ice",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Ice Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+------------------------------------------------------------------------
+elseif vs.Name == (allfruit [11])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [11]);
+Duration = 300;
+}) 
+ Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Sand-Sand",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Sand Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit[12])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [12]);
+Duration = 300;
+}) 
+ Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Dark-Dark",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Dark Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+------------------------------------------------------------------------------
+elseif vs.Name == (allfruit [13])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [13]);
+Duration = 300;
+}) 
+ Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Ghost-Ghost",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Ghost Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit[14])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [14]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Diamond-Diamond",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Diamond Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+----------------------------------------------------------------------------
+elseif vs.Name == (allfruit [15])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [15]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Light-Light",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Light Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit[16])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [16]);
+Duration = 300;
+}) 
+ Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Love-Love",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Love Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+----------------------------------------------------------------------------
+elseif vs.Name == (allfruit [17])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [17]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Rubber-Rubber",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Rubber Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit[18])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [18]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Barrier-Barrier",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Barrier Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------
+elseif vs.Name == (allfruit [19])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [19]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Magma-Magma",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Magma Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [20])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [20]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Portal-Portal",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Portal Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [21])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [21]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Quake-Quake",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Quake Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [22])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [22]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Buddha-Buddha",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Buddha Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [23])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [23]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Spider-Spider",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Spider Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [24])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [24]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Phoenix-Phoenix",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Phoenix Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [25])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [25]);
+Duration = 300;
+}) 
+ Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Rumble-Rumble",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Rumble Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [26])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [26]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Pain-Pain",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Pain Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [27])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [27]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Gravity-Gravity",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Gravity Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [28])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [28]);
+Duration = 300;
+}) 
+ Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Dough-Dough",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Dough Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit [29])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [29]);
+Duration = 300;
+}) 
+ Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Shadow-Shadow",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Shadow Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [30])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [30]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Venom-Venom",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Venom Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [31])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [31]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Control-Control",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Control Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [32])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [32]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Dragon-Dragon",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Dragon Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+---------------------------------------------------------------------
+elseif vs.Name == (allfruit [33])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [33]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Spirit-Spirit",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Spirit Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit [34])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [34]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Leopard-Leopard",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Leopard Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit [35])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [35]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Blizzard-Blizzard",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Blizzard Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit [36])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [36]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Rocket-Rocket",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Rocket Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+--------------------------------------------
+elseif vs.Name == (allfruit [37])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [37]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Mammoth-Mammoth",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Mammoth Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+---------------------------------------------
+elseif vs.Name == (allfruit [38])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [38]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "T-Rex-T-Rex",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["T-Rex Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+---------------------------------------------
+elseif vs.Name == (allfruit [39])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [39]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Kitsune-Kitsune",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Kitsune Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+---------------------------------------------
+elseif vs.Name == (allfruit [40])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [40]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Sound-Sound",
+    [3] = game:GetService("Players").LocalPlayer.Backpack["Sound Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+end
+end
+end
+---------------------------------------------------------------------------------------------------------------------------------------------------Store2
+local function Stores2()
+for i,vs in pairs (game.Players.LocalPlayer.Character:GetChildren()) do
+if vs:IsA("Tool") and vs.Name == (allfruit [1]) and Store == true 
+then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [1]);
+Duration = 300;
+}) 
+ Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Bomb-Bomb",
+    [3] = game:GetService("Players").LocalPlayer.Character["Bomb Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit[2]) and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [2]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Spike-Spike",
+    [3] = game:GetService("Players").LocalPlayer.Character["Spike Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+------------------------------------------------------------------------------
+elseif vs.Name == (allfruit [3])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [3]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Chop-Chop",
+    [3] = game:GetService("Players").LocalPlayer.Character["Chop Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit[4])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [4]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Spring-Spring",
+    [3] = game:GetService("Players").LocalPlayer.Character["Spring Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+---------------------------------------------------------------------------
+elseif vs.Name == (allfruit [5])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [5]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Kilo-Kilo",
+    [3] = game:GetService("Players").LocalPlayer.Character["Kilo Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit[6])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [6]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Smoke-Smoke",
+    [3] = game:GetService("Players").LocalPlayer.Character["Smoke Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+------------------------------------------------------------------------
+elseif vs.Name == (allfruit [7])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [7]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Spin-Spin",
+    [3] = game:GetService("Players").LocalPlayer.Character["Spin Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit[8])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [8]);
+Duration = 300;
+}) 
+ Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Flame-Flame",
+    [3] = game:GetService("Players").LocalPlayer.Character["Flame Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+----------------------------------------------------------------------
+elseif vs.Name == (allfruit [9])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [9]);
+Duration = 300;
+}) 
+ Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Falcon-Falcon",
+    [3] = game:GetService("Players").LocalPlayer.Character["Falcon Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit[10])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [10]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Ice-Ice",
+    [3] = game:GetService("Players").LocalPlayer.Character["Ice Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+------------------------------------------------------------------------
+elseif vs.Name == (allfruit [11])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [11]);
+Duration = 300;
+}) 
+ Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Sand-Sand",
+    [3] = game:GetService("Players").LocalPlayer.Character["Sand Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit[12])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [12]);
+Duration = 300;
+}) 
+ Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Dark-Dark",
+    [3] = game:GetService("Players").LocalPlayer.Character["Dark Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+------------------------------------------------------------------------------
+elseif vs.Name == (allfruit [13])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [13]);
+Duration = 300;
+}) 
+ Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Ghost-Ghost",
+    [3] = game:GetService("Players").LocalPlayer.Character["Ghost Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit[14])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [14]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Diamond-Diamond",
+    [3] = game:GetService("Players").LocalPlayer.Character["Diamond Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+----------------------------------------------------------------------------
+elseif vs.Name == (allfruit [15])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [15]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Light-Light",
+    [3] = game:GetService("Players").LocalPlayer.Character["Light Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit[16])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [16]);
+Duration = 300;
+}) 
+ Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Love-Love",
+    [3] = game:GetService("Players").LocalPlayer.Character["Love Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+----------------------------------------------------------------------------
+elseif vs.Name == (allfruit [17])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [17]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Rubber-Rubber",
+    [3] = game:GetService("Players").LocalPlayer.Character["Rubber Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit[18])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [18]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Barrier-Barrier",
+    [3] = game:GetService("Players").LocalPlayer.Character["Barrier Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------
+elseif vs.Name == (allfruit [19])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [19]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Magma-Magma",
+    [3] = game:GetService("Players").LocalPlayer.Character["Magma Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [20])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [20]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Portal-Portal",
+    [3] = game:GetService("Players").LocalPlayer.Character["Portal Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [21])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [21]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Quake-Quake",
+    [3] = game:GetService("Players").LocalPlayer.Character["Quake Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [22])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [22]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Buddha-Buddha",
+    [3] = game:GetService("Players").LocalPlayer.Character["Buddha Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [23])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [23]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Spider-Spider",
+    [3] = game:GetService("Players").LocalPlayer.Character["Spider Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [24])  and vs:IsA("Tool") and Store == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [24]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Phoenix-Phoenix",
+    [3] = game:GetService("Players").LocalPlayer.Character["Phoenix Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [25])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [25]);
+Duration = 300;
+}) 
+ Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Rumble-Rumble",
+    [3] = game:GetService("Players").LocalPlayer.Character["Rumble Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [26])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [26]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Pain-Pain",
+    [3] = game:GetService("Players").LocalPlayer.Character["Pain Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [27])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [27]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Gravity-Gravity",
+    [3] = game:GetService("Players").LocalPlayer.Character["Gravity Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [28])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [28]);
+Duration = 300;
+}) 
+ Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Dough-Dough",
+    [3] = game:GetService("Players").LocalPlayer.Character["Dough Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit [29])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [29]);
+Duration = 300;
+}) 
+ Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Shadow-Shadow",
+    [3] = game:GetService("Players").LocalPlayer.Character["Shadow Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [30])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [30]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Venom-Venom",
+    [3] = game:GetService("Players").LocalPlayer.Character["Venom Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [31])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [31]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Control-Control",
+    [3] = game:GetService("Players").LocalPlayer.Character["Control Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+-----------------------------------------------
+elseif vs.Name == (allfruit [32])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [32]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Dragon-Dragon",
+    [3] = game:GetService("Players").LocalPlayer.Character["Dragon Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+---------------------------------------------------------------------
+elseif vs.Name == (allfruit [33])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [33]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Spirit-Spirit",
+    [3] = game:GetService("Players").LocalPlayer.Character["Spirit Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-----------------------------------------------------------------------------
+elseif vs.Name == (allfruit [34])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [34]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Leopard-Leopard",
+    [3] = game:GetService("Players").LocalPlayer.Character["Leopard Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+-------------------------------------------------------------------------------
+elseif vs.Name == (allfruit [35])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [35]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Blizzard-Blizzard",
+    [3] = game:GetService("Players").LocalPlayer.Character["Blizzard Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+--------------------------------------------
+elseif vs.Name == (allfruit [36])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [36]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Rocket-Rocket",
+    [3] = game:GetService("Players").LocalPlayer.Character["Rocket Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+--------------------------------------------
+elseif vs.Name == (allfruit [37])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [37]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Mammoth-Mammoth",
+    [3] = game:GetService("Players").LocalPlayer.Character["Mammoth Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+--------------------------------------------
+elseif vs.Name == (allfruit [38])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [38]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "T-Rex-T-Rex",
+    [3] = game:GetService("Players").LocalPlayer.Character["T-Rex Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+--------------------------------------------
+elseif vs.Name == (allfruit [39])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [39]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Kitsune-Kitsune",
+    [3] = game:GetService("Players").LocalPlayer.Character["Kitsune Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+--------------------------------------------
+elseif vs.Name == (allfruit [40])  and vs:IsA("Tool") and Store == true  then
+game.StarterGui:SetCore("SendNotification", {
+Title = "FruitStored";
+Text = (allfruit [40]);
+Duration = 300;
+}) 
+  Kilo = {
+    [1] = "StoreFruit",
+    [2] = "Sound-Sound",
+    [3] = game:GetService("Players").LocalPlayer.Character["Sound Fruit"]
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(Kilo))
+end
+end
+end
+-----------------------------------------------------------
+repeat wait() until game:GetService("Players").LocalPlayer:WaitForChild("DataLoaded") ~= nil
+pcall (function()
+    repeat wait(1) until game.Players.LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Pirates.Frame:FindFirstChild("TextButton") ~= nil or game.Players.LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam") ~= nil
+ for i,v in pairs(getconnections(game.Players.LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Marines.Frame.TextButton.Activated)) do
+v.Function()
+end
+end)
+---------------------------------------------------------- Backpack
+wait(2)
+local args = {
+    [1] = "Buso"
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+local args = {
+    [1] = "Cousin",
+    [2] = "Buy"}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+-----------------------------------------------------------------
+wait(2)
+game.Players.LocalPlayer.Backpack.ChildAdded:Connect(function(Fruityss)
+if Fruityss:IsA("Tool") and Fruityss.Name ~= "Highlight" then
+local datasss = {
+   ["content"] = PLACESEA,
+   ["embeds"] = {{
+           ["title"] = "You Got This Fruit @everyone",
+           ["description"] = Fruityss.Name,
+           ["type"] = "rich",
+           ["color"] = tonumber(0x7269da)}}}
+local newdatasss = game:GetService("HttpService"):JSONEncode(datasss)
+local headersss = {["content-type"] = "application/json"}
+local requestsss = http_request or request or HttpPost or syn.request 
+local abcdefsss = {Url = Webhook, Body = newdatasss, Method = "POST", Headers = headersss}
+requestsss(abcdefsss)
+end
+
+if Fruityss:IsA("Tool") and table.find (Fruits,Fruityss.Name) then
+Debounce = false
+game.StarterGui:SetCore("SendNotification", {
+Title = "Fruit Notifier";
+Text = Fruityss.Name;
+Duration = 1000;
+}) 
+end
+--------------
+if  Fruityss:IsA("Tool") and table.find(Valuable, Fruityss.Name) and Valuable ~= nil then
+Repeat = false
+end
+end)
+---------------------------------------------------------- Character
+game.Players.LocalPlayer.Character.ChildAdded:Connect(function(Fruitys)
+if Fruitys:IsA("Tool") and Fruitys.Name ~= "Highlight"  then
+local datass = {
+   ["content"] = PLACESEA,
+   ["embeds"] = {{
+           ["title"] = "You Got This Fruit @everyone",
+           ["description"] = Fruitys.Name,
+           ["type"] = "rich",
+           ["color"] = tonumber(0x7269da)}}}
+local newdatass = game:GetService("HttpService"):JSONEncode(datass)
+local headerss = {["content-type"] = "application/json"}
+local requestss = http_request or request or HttpPost or syn.request
+local abcdefss = {Url = Webhook, Body = newdatass, Method = "POST", Headers = headerss}
+requestss(abcdefss)
+end
+if Fruitys:IsA("Tool") and table.find (Fruits,Fruitys.Name) then
+Debounce = false
+game.StarterGui:SetCore("SendNotification", {
+Title = "Fruit Notifier";
+Text = Fruitys.Name;
+Duration = 1000;
+}) 
+end
+--------------
+if  Fruitys:IsA("Tool") and table.find(Valuable, Fruitys.Name) and Valuable ~= nil then
+Repeat = false
+end
+end)
+--------------------------------------------------------Hop
+
+
+for i, v in pairs(workspace:GetChildren()) do
+pcall (function()
+if  v:IsA("Tool") and table.find(Fruits, v.Name) then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame * CFrame.new (0, 50, 50)
+wait()
+game.Players.LocalPlayer.Character.Humanoid.Health = 0
+wait(5)
+TeleportTween(v.Handle.CFrame, CFrame.new(0,50,0))
+ current_tween.Completed:Wait() current_tween = nil  noclip_tween = false
+tweenService, tweengo   = game:GetService("TweenService"), TweenInfo.new(5, Enum.EasingStyle.Linear)
+tweengo = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweengo, {CFrame = CFrame.new(v.Handle.Position)})
+tweengo:Play()  
+tweengo.Completed:Wait()
+Debounce = false
+wait(0.3)
+if Store == true then
+Stores1()
+Stores2()
+end
+wait(0.5)
+------------------------------------------------
+------------------------------------------------
+elseif v.Name == "Fruit " and v:IsA("Model") then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame * CFrame.new (0, 50, 50)
+wait()
+game.Players.LocalPlayer.Character.Humanoid.Health = 0
+wait(5)
+TeleportTween(v.Handle.CFrame, CFrame.new(0,50,0))
+ current_tween.Completed:Wait() current_tween = nil  noclip_tween = false
+tweenService, tweengo   = game:GetService("TweenService"), TweenInfo.new(5, Enum.EasingStyle.Linear)
+tweengo = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweengo, {CFrame = CFrame.new(v.Handle.Position)})
+tweengo:Play()  
+tweengo.Completed:Wait()
+wait(0.3)
+if Store == true then
+Stores1()
+Stores2()
+end
+wait(0.5)
+end
+end)
+end
+------------------------------------Fruit
+wait()
+if Safeplace == true and PlaceId == 2753915549  then
+TeleportTween(CFrame.new(1094.15308, 16.2736206, 1432.69824, -0.640379906, 0, 0.7680583, 0, 1, 0, -0.7680583, 0, -0.640379906))
+elseif 
+Safeplace == true and PlaceId == 4442272183   then
+TeleportTween(CFrame.new(-376.162628, 73.0200806, 290.702698, 0.995877445, -1.01864384e-08, 0.0907089561, 1.26297417e-08, 1, -2.63616418e-08, -0.0907089561, 2.73985936e-08, 0.995877445))
+elseif 
+Safeplace == true and PlaceId == 7449423635   then
+TeleportTween(CFrame.new(-12550, 337.168274, -7505.59131, 0.989878714, 0, -0.141915917, 0, 1, 0, 0.141915917, 0, 0.989878714))
+end
+------------------------------------------------
+wait(0.3)
+if Store == true then
+Stores1()
+Stores2()
+end
+wait(0.5)
+------------------------------------------------
+repeat wait() until game:IsLoaded()
+local Settings = {}
+local HttpService = game:GetService("HttpService")
+local SaveFileName = "seahubjoin.json"
+function SaveSettings()
+  local HttpService = game:GetService("HttpService")
+  if not isfolder("Sea Hub") then
+      makefolder("Sea Hub")
+  end
+  writefile("Sea Hub/" .. SaveFileName, HttpService:JSONEncode(Settings))
+end
+
+function ReadSetting()
+  local s,e = pcall(function()
+      local HttpService = game:GetService("HttpService")
+      if not isfolder("Sea Hub") then
+          makefolder("Sea Hub")
+      end
+      return HttpService:JSONDecode(readfile("Sea Hub/" .. SaveFileName))
+  end)
+  if s then return e
+  else
+      SaveSettings()
+      return ReadSetting()
+  end
+end
+Settings = ReadSetting()
+
+function HopServer()
+  local function Hop()
+      for i=1,100 do
+          local huhu = game:GetService("ReplicatedStorage").__ServerBrowser:InvokeServer(i)
+          for k,v in pairs(huhu) do
+              if k~=game.JobId and v.Count < 10  then
+                  if not Settings[k] or tick() - Settings[k].Time > 60*10  then
+                       Settings[k] = {
+                           Time = tick()
+                       }
+                       SaveSettings()
+                      game:GetService("ReplicatedStorage").__ServerBrowser:InvokeServer("teleport",k)
+                      return true
+                  elseif tick() - Settings[k].Time > 60*60 then
+                      Settings[k] = nil
+                  end
+              end
+          end
+      end
+      return false
+  end
+  if not getgenv().Loaded then
+      local function child(v)
+          if v.Name == "ErrorPrompt" then
+              if v.Visible then
+                  if v.TitleFrame.ErrorTitle.Text == "Teleport Failed" then
+                      HopServer()
+                  end
+              end
+              v:GetPropertyChangedSignal("Visible"):Connect(function()
+                  if v.Visible then
+                      if v.TitleFrame.ErrorTitle.Text == "Teleport Failed" then
+                          HopServer()
+                      end
+                  end
+              end)
+          end
+      end
+      for k,v in pairs(game.CoreGui.RobloxPromptGui.promptOverlay:GetChildren()) do
+          child(v)
+      end
+      game.CoreGui.RobloxPromptGui.promptOverlay.ChildAdded:Connect(child)
+      getgenv().Loaded = true
+  end
+  while not Hop() do wait() end
+  SaveSettings()
+end
+--------------------------------------------
+----------------------------------------
+if Repeat == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "Teleporting...";
+Text = "";
+Duration = 20;
+})
+HopServer()
+elseif Debounce == true then
+game.StarterGui:SetCore("SendNotification", {
+Title = "Teleporting...";
+Text = "";
+Duration = 20;
+})
+HopServer()
+end
+----------------------------------------
