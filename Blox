@@ -1215,7 +1215,7 @@ v.Function()
 end
 end)
 ---------------------------------------------------------- Backpack
-wait(2)
+wait(1)
 local args = {
     [1] = "Buso"
 }
@@ -1225,7 +1225,7 @@ local args = {
     [2] = "Buy"}
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
 -----------------------------------------------------------------
-wait(2)
+wait(1)
 game.Players.LocalPlayer.Backpack.ChildAdded:Connect(function(Fruityss)
 if Fruityss:IsA("Tool") and Fruityss.Name ~= "Highlight" then
 local datasss = {
@@ -1257,7 +1257,7 @@ end
 end)
 ---------------------------------------------------------- Character
 game.Players.LocalPlayer.Character.ChildAdded:Connect(function(Fruitys)
-if Fruitys:IsA("Tool") and Fruitys.Name ~= "Highlight"  then
+if Fruitys:IsA("Tool") then
 local datass = {
    ["content"] = PLACESEA,
    ["embeds"] = {{
