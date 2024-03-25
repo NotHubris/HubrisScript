@@ -51,8 +51,8 @@ Text = "https://discord.gg/yYpE7S7YkR";
 Duration = 20;
 })
 game.StarterGui:SetCore("SendNotification", {
-Title = "05/12/22";
-Text = "Changed tween to tp ;-;";
+Title = "2 years from now";
+Text = "Maker lol";
 Duration = 20;
 })
 -------------------------------------------------------Anti afk
@@ -1257,20 +1257,18 @@ end
 end)
 ---------------------------------------------------------- Character
 game.Players.LocalPlayer.Character.ChildAdded:Connect(function(Fruitys)
-if Fruitys:IsA("Tool") then
-local datass = {
+local data = {
    ["content"] = PLACESEA,
    ["embeds"] = {{
            ["title"] = "You Got This Fruit @everyone",
            ["description"] = Fruitys.Name,
            ["type"] = "rich",
            ["color"] = tonumber(0x7269da)}}}
-local newdatass = game:GetService("HttpService"):JSONEncode(datass)
-local headerss = {["content-type"] = "application/json"}
-local requestss = http_request or request or HttpPost or syn.request
-local abcdefss = {Url = Webhook, Body = newdatass, Method = "POST", Headers = headerss}
-requestss(abcdefss)
-end
+local newdata = game:GetService("HttpService"):JSONEncode(data)
+local headers = {["content-type"] = "application/json"}
+local request = http_request or request or HttpPost or syn.request
+local abcdef = {Url = Webhook, Body = newdata, Method = "POST", Headers = headers}
+request(abcdef)
 if Fruitys:IsA("Tool") and table.find (Fruits,Fruitys.Name) then
 Debounce = false
 game.StarterGui:SetCore("SendNotification", {
