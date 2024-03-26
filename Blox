@@ -1,8 +1,9 @@
 
 
-
-
 ----------  Bitch stop messin up the webhook
+
+
+
 ----------------- v 13
 local PLACESEA = nil
 if game.PlaceId == 2753915549 then
@@ -110,10 +111,10 @@ end
 function TeleportTween(dist, AdditionalCFrame)
        if Plr.Character:FindFirstChild("HumanoidRootPart") and Plr.Character:FindFirstChild("Humanoid") then
            if AdditionalCFrame then
-               local tweenInfo = TweenInfo.new((Plr.Character:WaitForChild("HumanoidRootPart").Position - dist.Position).magnitude / 300, Enum.EasingStyle.Linear)
+               local tweenInfo = TweenInfo.new((Plr.Character:WaitForChild("HumanoidRootPart").Position - dist.Position).magnitude / 350, Enum.EasingStyle.Linear)
                current_tween = TweenService:Create(Plr.Character:WaitForChild("HumanoidRootPart"), tweenInfo, {CFrame = dist * AdditionalCFrame})
            else 
-               local tweenInfo = TweenInfo.new((Plr.Character:WaitForChild("HumanoidRootPart").Position - dist.Position).magnitude / 300, Enum.EasingStyle.Linear)
+               local tweenInfo = TweenInfo.new((Plr.Character:WaitForChild("HumanoidRootPart").Position - dist.Position).magnitude / 350, Enum.EasingStyle.Linear)
                current_tween = TweenService:Create(Plr.Character:WaitForChild("HumanoidRootPart"), tweenInfo, {CFrame = dist})
            end 
            current_tween:Play()
@@ -1207,7 +1208,7 @@ task.spawn(function()
   while task.wait() do
       if noclip_tween then
         pcall(function()
-          Plr.Character:WaitForChild("Humanoid"):ChangeState(11)
+          Plr.Character:FindFirstChild("Humanoid"):ChangeState(11)
         end)
           
       end
