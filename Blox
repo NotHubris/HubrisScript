@@ -1,20 +1,8 @@
-Fruits = {"Bomb Fruit","Spike Fruit","Chop Fruit","Spring Fruit","Kilo Fruit","Smoke Fruit","Spin Fruit","Flame Fruit","Falcon Fruit","Ice Fruit","Sand Fruit","Dark Fruit","Ghost Fruit","Diamond Fruit","Light Fruit","Love Fruit","Rubber Fruit","Barrier Fruit","Magma Fruit","Portal Fruit","Quake Fruit","Buddha Fruit","Spider Fruit","Phoenix Fruit","Rumble Fruit","Pain Fruit","Gravity Fruit","Dough Fruit","Shadow Fruit","Venom Fruit","Control Fruit","Dragon Fruit","Spirit Fruit","Leopard Fruit","Blizzard Fruit","Rocket Fruit","Mammoth Fruit","T-Rex Fruit","Kitsune Fruit","Sound Fruit"}
-
-
-Valuable = {"Dough Fruit","Shadow Fruit","Venom Fruit","Control Fruit","Dragon Fruit","Soul Fruit","Leopard Fruit"} ------ it will stop the script if you got this fruit
-Webhook = "https://discord.com/api/webhooks/1221850170614878348/xaXeEgdCIOIlcxc5BGK3uC_icRmpIkQuzejb366vOiFBbuoa_-SZPGNr4B1sjQNufv_g" 
-Store = true  --------------------------------Auto Store after it got the fruit
-Safeplace = true ----------------------------- Safeplace 
-Repeat = true --------------------------------- Repeat continues hopping
------------------------------------------------------------------------
 
 
 
 
 ----------  Bitch stop messin up the webhook
-
-
-
 ----------------- v 13
 local PLACESEA = nil
 if game.PlaceId == 2753915549 then
@@ -1215,7 +1203,18 @@ v.Function()
 end
 end)
 ---------------------------------------------------------- Backpack
-wait(1)
+task.spawn(function()
+  while task.wait() do
+      if noclip_tween then
+        pcall(function()
+          Plr.Character:WaitForChild("Humanoid"):ChangeState(11)
+        end)
+          
+      end
+  end
+end)
+--------------------------------------------
+wait(0.5)
 local args = {
     [1] = "Buso"
 }
@@ -1225,73 +1224,44 @@ local args = {
     [2] = "Buy"}
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
 -----------------------------------------------------------------
-wait(1)
-game.Players.LocalPlayer.Backpack.ChildAdded:Connect(function(Fruityss)
-if Fruityss:IsA("Tool") and Fruityss.Name ~= "Highlight" then
-local datasss = {
-   ["content"] = PLACESEA,
-   ["embeds"] = {{
-           ["title"] = "You Got This Fruit @everyone",
-           ["description"] = Fruityss.Name,
-           ["type"] = "rich",
-           ["color"] = tonumber(0x7269da)}}}
-local newdatasss = game:GetService("HttpService"):JSONEncode(datasss)
-local headersss = {["content-type"] = "application/json"}
-local requestsss = http_request or request or HttpPost or syn.request 
-local abcdefsss = {Url = Webhook, Body = newdatasss, Method = "POST", Headers = headersss}
-requestsss(abcdefsss)
-end
-
-if Fruityss:IsA("Tool") and table.find (Fruits,Fruityss.Name) then
-Debounce = false
-game.StarterGui:SetCore("SendNotification", {
-Title = "Fruit Notifier";
-Text = Fruityss.Name;
-Duration = 1000;
-}) 
-end
---------------
-if  Fruityss:IsA("Tool") and table.find(Valuable, Fruityss.Name) and Valuable ~= nil then
-Repeat = false
-end
-end)
+wait()
 ---------------------------------------------------------- Character
-game.Players.LocalPlayer.Character.ChildAdded:Connect(function(Fruitys)
-local data = {
-   ["content"] = PLACESEA,
-   ["embeds"] = {{
-           ["title"] = "You Got This Fruit @everyone",
-           ["description"] = Fruitys.Name,
-           ["type"] = "rich",
-           ["color"] = tonumber(0x7269da)}}}
-local newdata = game:GetService("HttpService"):JSONEncode(data)
-local headers = {["content-type"] = "application/json"}
-local request = http_request or request or HttpPost or syn.request
-local abcdef = {Url = Webhook, Body = newdata, Method = "POST", Headers = headers}
-request(abcdef)
-if Fruitys:IsA("Tool") and table.find (Fruits,Fruitys.Name) then
-Debounce = false
-game.StarterGui:SetCore("SendNotification", {
-Title = "Fruit Notifier";
-Text = Fruitys.Name;
-Duration = 1000;
-}) 
-end
---------------
-if  Fruitys:IsA("Tool") and table.find(Valuable, Fruitys.Name) and Valuable ~= nil then
-Repeat = false
-end
-end)
 --------------------------------------------------------Hop
-
-
 for i, v in pairs(workspace:GetChildren()) do
-pcall (function()
+
 if  v:IsA("Tool") and table.find(Fruits, v.Name) then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame * CFrame.new (0, 50, 50)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame * CFrame.new (0, 10, 10)
 wait()
 game.Players.LocalPlayer.Character.Humanoid.Health = 0
 wait(5)
+repeat wait() until game.Players.LocalPlayer.Character.Humanoid.Health > 0
+--------------------------------------
+game.Players.LocalPlayer.Character.ChildAdded:Connect(function(v)
+  if v:IsA("Tool") and table.find (Fruits, v.Name) then
+  Debounce = false
+  game.StarterGui:SetCore("SendNotification", {
+  Title = "Fruit Notifier";
+  Text = v.Name;
+  Duration = 1000;
+  }) 
+  local data = {
+     ["content"] = PLACESEA,
+     ["embeds"] = {{
+             ["title"] = "You Got This Fruit @everyone",
+             ["description"] = v.Name,
+             ["type"] = "rich",
+             ["color"] = tonumber(0x7269da)}}}
+  local newdata = game:GetService("HttpService"):JSONEncode(data)
+  local headers = {["content-type"] = "application/json"}
+  local request = http_request or request or HttpPost or syn.request
+  local abcdef = {Url = Webhook, Body = newdata, Method = "POST", Headers = headers}
+  request(abcdef)
+  end
+  if  v:IsA("Tool") and table.find(Valuable, v) and Valuable ~= nil then
+  Repeat = false
+  end
+  end)
+--------------------------------------
 TeleportTween(v.Handle.CFrame, CFrame.new(0,50,0))
  current_tween.Completed:Wait() current_tween = nil  noclip_tween = false
 tweenService, tweengo   = game:GetService("TweenService"), TweenInfo.new(5, Enum.EasingStyle.Linear)
@@ -1308,10 +1278,38 @@ wait(0.5)
 ------------------------------------------------
 ------------------------------------------------
 elseif v.Name == "Fruit " and v:IsA("Model") then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame * CFrame.new (0, 50, 50)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame * CFrame.new (0, 10, 10)
 wait()
 game.Players.LocalPlayer.Character.Humanoid.Health = 0
 wait(5)
+repeat wait() until game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health > 0
+-------------------------------
+game.Players.LocalPlayer:FindFirstChild("Backpack").ChildAdded:Connect(function(v)
+  if v:IsA("Tool") and table.find (Fruits,v.Name) then
+  Debounce = false
+  game.StarterGui:SetCore("SendNotification", {
+  Title = "Fruit Notifier";
+  Text = v.Name;
+  Duration = 1000;
+  }) 
+  local data = {
+     ["content"] = PLACESEA,
+     ["embeds"] = {{
+             ["title"] = "You Got This Fruit @everyone",
+             ["description"] = v.Name,
+             ["type"] = "rich",
+             ["color"] = tonumber(0x7269da)}}}
+  local newdata = game:GetService("HttpService"):JSONEncode(data)
+  local header = {["content-type"] = "application/json"}
+  local request = http_request or request or HttpPost or syn.request 
+  local abc = {Url = Webhook, Body = newdata, Method = "POST", Headers = header}
+  request(abc)
+  end
+  if  v:IsA("Tool") and table.find(Valuable, v.Name) and Valuable ~= nil then
+  Repeat = false
+  end
+  end)
+-------------------------------
 TeleportTween(v.Handle.CFrame, CFrame.new(0,50,0))
  current_tween.Completed:Wait() current_tween = nil  noclip_tween = false
 tweenService, tweengo   = game:GetService("TweenService"), TweenInfo.new(5, Enum.EasingStyle.Linear)
@@ -1325,7 +1323,6 @@ Stores2()
 end
 wait(0.5)
 end
-end)
 end
 ------------------------------------Fruit
 wait()
@@ -1339,88 +1336,30 @@ Safeplace == true and PlaceId == 7449423635   then
 TeleportTween(CFrame.new(-12550, 337.168274, -7505.59131, 0.989878714, 0, -0.141915917, 0, 1, 0, 0.141915917, 0, 0.989878714))
 end
 ------------------------------------------------
-wait(0.3)
+wait(1)
 if Store == true then
 Stores1()
 Stores2()
 end
-wait(0.5)
+wait(0)
 ------------------------------------------------
-repeat wait() until game:IsLoaded()
-local Settings = {}
-local HttpService = game:GetService("HttpService")
-local SaveFileName = "seahubjoin.json"
-function SaveSettings()
-  local HttpService = game:GetService("HttpService")
-  if not isfolder("Sea Hub") then
-      makefolder("Sea Hub")
-  end
-  writefile("Sea Hub/" .. SaveFileName, HttpService:JSONEncode(Settings))
+local Http = game:GetService("HttpService")
+local TPS = game:GetService("TeleportService")
+local Api = "https://games.roblox.com/v1/games/"
+
+local _place = game.PlaceId
+local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=100"
+function ListServers(cursor)
+   local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
+   return Http:JSONDecode(Raw)
 end
 
-function ReadSetting()
-  local s,e = pcall(function()
-      local HttpService = game:GetService("HttpService")
-      if not isfolder("Sea Hub") then
-          makefolder("Sea Hub")
-      end
-      return HttpService:JSONDecode(readfile("Sea Hub/" .. SaveFileName))
-  end)
-  if s then return e
-  else
-      SaveSettings()
-      return ReadSetting()
-  end
-end
-Settings = ReadSetting()
+local Server, Next; repeat
+   local Servers = ListServers(Next)
+   Server = Servers.data[1]
+   Next = Servers.nextPageCursor
+until Server
 
-function HopServer()
-  local function Hop()
-      for i=1,100 do
-          local huhu = game:GetService("ReplicatedStorage").__ServerBrowser:InvokeServer(i)
-          for k,v in pairs(huhu) do
-              if k~=game.JobId and v.Count < 10  then
-                  if not Settings[k] or tick() - Settings[k].Time > 60*10  then
-                       Settings[k] = {
-                           Time = tick()
-                       }
-                       SaveSettings()
-                      game:GetService("ReplicatedStorage").__ServerBrowser:InvokeServer("teleport",k)
-                      return true
-                  elseif tick() - Settings[k].Time > 60*60 then
-                      Settings[k] = nil
-                  end
-              end
-          end
-      end
-      return false
-  end
-  if not getgenv().Loaded then
-      local function child(v)
-          if v.Name == "ErrorPrompt" then
-              if v.Visible then
-                  if v.TitleFrame.ErrorTitle.Text == "Teleport Failed" then
-                      HopServer()
-                  end
-              end
-              v:GetPropertyChangedSignal("Visible"):Connect(function()
-                  if v.Visible then
-                      if v.TitleFrame.ErrorTitle.Text == "Teleport Failed" then
-                          HopServer()
-                      end
-                  end
-              end)
-          end
-      end
-      for k,v in pairs(game.CoreGui.RobloxPromptGui.promptOverlay:GetChildren()) do
-          child(v)
-      end
-      game.CoreGui.RobloxPromptGui.promptOverlay.ChildAdded:Connect(child)
-      getgenv().Loaded = true
-  end
-  while not Hop() do wait() end
-  SaveSettings()
-end
 --------------------------------------------
 ----------------------------------------
 if Repeat == true then
@@ -1429,13 +1368,13 @@ Title = "Teleporting...";
 Text = "";
 Duration = 20;
 })
-HopServer()
+TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
 elseif Debounce == true then
 game.StarterGui:SetCore("SendNotification", {
 Title = "Teleporting...";
 Text = "";
 Duration = 20;
 })
-HopServer()
+TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)            
 end
 ----------------------------------------
