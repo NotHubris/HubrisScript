@@ -1,5 +1,9 @@
 
 
+
+  
+
+
 ----------  Bitch stop messin up the webhook
 
 
@@ -1232,7 +1236,6 @@ for i, v in pairs(workspace:GetChildren()) do
 
 if  v:IsA("Tool") and table.find(Fruits, v.Name) then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame * CFrame.new (0, 10, 10)
-wait()
 game.Players.LocalPlayer.Character.Humanoid.Health = 0
 wait(5)
 repeat wait() until game.Players.LocalPlayer.Character.Humanoid.Health > 0
@@ -1280,7 +1283,6 @@ wait(0.5)
 ------------------------------------------------
 elseif v.Name == "Fruit " and v:IsA("Model") then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame * CFrame.new (0, 10, 10)
-wait()
 game.Players.LocalPlayer.Character.Humanoid.Health = 0
 wait(5)
 repeat wait() until game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health > 0
@@ -1337,29 +1339,157 @@ Safeplace == true and PlaceId == 7449423635   then
 TeleportTween(CFrame.new(-12550, 337.168274, -7505.59131, 0.989878714, 0, -0.141915917, 0, 1, 0, 0.141915917, 0, 0.989878714))
 end
 ------------------------------------------------
-wait(1)
+wait()
 if Store == true then
 Stores1()
 Stores2()
 end
-wait(0)
+wait()
 ------------------------------------------------
-local Http = game:GetService("HttpService")
-local TPS = game:GetService("TeleportService")
-local Api = "https://games.roblox.com/v1/games/"
-
-local _place = game.PlaceId
-local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=100"
-function ListServers(cursor)
-   local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
-   return Http:JSONDecode(Raw)
+local PlaceID = game.PlaceId
+local AllIDs = {}
+local foundAnything = ""
+local actualHour = os.date("!*t").hour
+local Deleted = false
+local File = pcall(function()
+    AllIDs = game:GetService('HttpService'):JSONDecode(readfile("NotSameServers.json"))
+end)
+if not File then
+    table.insert(AllIDs, actualHour)
+    writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+end
+function TPReturner()
+    local Site;
+    if foundAnything == "" then
+        Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+    else
+        Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+    end
+    local ID = ""
+    if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+        foundAnything = Site.nextPageCursor
+    end
+    local num = 0;
+    for i,v in pairs(Site.data) do
+        local Possible = true
+        ID = tostring(v.id)
+        if tonumber(v.maxPlayers) > tonumber(v.playing) then
+            for _,Existing in pairs(AllIDs) do
+                if num ~= 0 then
+                    if ID == tostring(Existing) then
+                        Possible = false
+                    end
+                else
+                    if tonumber(actualHour) ~= tonumber(Existing) then
+                        local delFile = pcall(function()
+                            delfile("NotSameServers.json")
+                            AllIDs = {}
+                            table.insert(AllIDs, actualHour)
+                        end)
+                    end
+                end
+                num = num + 1
+            end
+            if Possible == true then
+                table.insert(AllIDs, ID)
+                wait(1)
+                pcall(function()
+                    writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+                    wait()
+                    game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+                end)
+                wait(1)
+            end
+        end
+    end
 end
 
-local Server, Next; repeat
-   local Servers = ListServers(Next)
-   Server = Servers.data[1]
-   Next = Servers.nextPageCursor
-until Server
+function Teleport()
+    while wait(1) do
+        pcall(function()
+            TPReturner()
+            if foundAnything ~= "" then
+                TPReturner()
+            end
+        end)
+    end
+end
+--------------------------------------------
+repeat wait() until game:IsLoaded()
+local Settings = {}
+local HttpService = game:GetService("HttpService")
+local SaveFileName = "seahubjoin.json"
+function SaveSettings()
+  local HttpService = game:GetService("HttpService")
+  if not isfolder("Sea Hub") then
+      makefolder("Sea Hub")
+  end
+  writefile("Sea Hub/" .. SaveFileName, HttpService:JSONEncode(Settings))
+end
+
+function ReadSetting()
+  local s,e = pcall(function()
+      local HttpService = game:GetService("HttpService")
+      if not isfolder("Sea Hub") then
+          makefolder("Sea Hub")
+      end
+      return HttpService:JSONDecode(readfile("Sea Hub/" .. SaveFileName))
+  end)
+  if s then return e
+  else
+      SaveSettings()
+      return ReadSetting()
+  end
+end
+Settings = ReadSetting()
+
+function HopServer()
+  local function Hop()
+      for i=1,100 do
+          local huhu = game:GetService("ReplicatedStorage").__ServerBrowser:InvokeServer(i)
+          for k,v in pairs(huhu) do
+              if k~=game.JobId and v.Count < 10  then
+                  if not Settings[k] or tick() - Settings[k].Time > 60*10  then
+                       Settings[k] = {
+                           Time = tick()
+                       }
+                       SaveSettings()
+                      game:GetService("ReplicatedStorage").__ServerBrowser:InvokeServer("teleport",k)
+                      return true
+                  elseif tick() - Settings[k].Time > 60*60 then
+                      Settings[k] = nil
+                  end
+              end
+          end
+      end
+      return false
+  end
+  if not getgenv().Loaded then
+      local function child(v)
+          if v.Name == "ErrorPrompt" then
+              if v.Visible then
+                  if v.TitleFrame.ErrorTitle.Text == "Teleport Failed" then
+                      HopServer()
+                  end
+              end
+              v:GetPropertyChangedSignal("Visible"):Connect(function()
+                  if v.Visible then
+                      if v.TitleFrame.ErrorTitle.Text == "Teleport Failed" then
+                          HopServer()
+                      end
+                  end
+              end)
+          end
+      end
+      for k,v in pairs(game.CoreGui.RobloxPromptGui.promptOverlay:GetChildren()) do
+          child(v)
+      end
+      game.CoreGui.RobloxPromptGui.promptOverlay.ChildAdded:Connect(child)
+      getgenv().Loaded = true
+  end
+  while not Hop() do wait() end
+  SaveSettings()
+end
 
 --------------------------------------------
 ----------------------------------------
@@ -1369,13 +1499,15 @@ Title = "Teleporting...";
 Text = "";
 Duration = 20;
 })
-TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
+Teleport()
+HopServer()
 elseif Debounce == true then
 game.StarterGui:SetCore("SendNotification", {
 Title = "Teleporting...";
 Text = "";
 Duration = 20;
-})
-TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)            
+})        
+Teleport()
+HopServer()
 end
 ----------------------------------------
